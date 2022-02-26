@@ -12,4 +12,8 @@ The frontend section has Cupertino tab bar, Google Maps, and search page. A Moda
 Researching and considering until solved, any studying and coding challenges that have been encountered during developing phase.
 Sharing my methods on solving problems about challenges in practice as a project leader.
 Learning new things in the devolopment process, for adding my mindset deeper knowledge about mobile development.
-https://github.com/FiratTurkeli/StreetArts/issues/1#issue-1151974169
+
+![Fotoram io](https://user-images.githubusercontent.com/98164787/155851366-92d14ab4-c6ef-471d-a1eb-4a8014956c82.jpg)
+![Fotoram io (1)](https://user-images.githubusercontent.com/98164787/155851372-e8821dbc-4a1b-4933-8c88-0ba7f8120c52.jpg)
+![Fotoram io (2)](https://user-images.githubusercontent.com/98164787/155851374-b64a03ac-828b-402d-b69e-c038ee67247a.jpg)
+![Fotoram io (3)](https://user-images.githubusercontent.com/98164787/155851379-f93dfbe6-80d6-4ff1-a73e-b8b6e8abc7d8.jpg)
