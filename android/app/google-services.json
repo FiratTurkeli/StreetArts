@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "220666750344",
+    "firebase_url": "https://ibbsokaksanatlari-default-rtdb.firebaseio.com",
+    "project_id": "ibbsokaksanatlari",
+    "storage_bucket": "ibbsokaksanatlari.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220666750344:android:1bdf8b8452370ae4dac63d",
+        "android_client_info": {
+          "package_name": "com.example.istanbulsokaksanatlari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220666750344-dep2b9g5802vi53hc819ii9fqaahd7g3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN1i3bE0ElBAu_zfoSbRc9G1lmKxiRh0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220666750344-dep2b9g5802vi53hc819ii9fqaahd7g3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
