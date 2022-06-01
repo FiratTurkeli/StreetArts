@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:istanbulsokaksanatlari/BottomPage.dart';
-import 'package:istanbulsokaksanatlari/LoginPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:istanbulsokaksanatlari/providers/user_provider.dart';
+import 'package:istanbulsokaksanatlari/screens/bottom_navigation_screen.dart';
+import 'package:istanbulsokaksanatlari/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
             builder: (context , snapshot){
               if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasData) {
-                  return const BottomPage();
+                  return const BottomNavigationScreen();
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text("${snapshot.error}"),
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               }
-              return const LoginPage();
+              return const LoginScreen();
             }
 
         ),

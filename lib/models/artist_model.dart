@@ -1,57 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Artist {
-  String name;
-  String description;
-  String genre;
-  String image;
+  final String name;
+  final String description;
+  final String category_uid;
+  final String category_name;
+  final String image;
+  final String uid;
+  final String surname;
+  final List followers;
+  final List following;
+  final String email;
 
   Artist({
-    required this.genre,
+    required this.email,
+    required this.following,
+    required this.followers,
+    required this.surname,
+    required this.uid,
+    required this.category_uid,
+    required this.category_name,
     required this.image,
     required this.name,
     required this.description,
   });
+
+
+  static Artist fromSnap(DocumentSnapshot snap) {
+    var snapshot = snap.data() as Map<String, dynamic>;
+
+    return Artist(
+      name: snapshot["name"],
+      image: snapshot["image"],
+      surname: snapshot["surname"],
+      followers: snapshot["followers"],
+      following: snapshot["following"],
+      uid: snapshot ["uid"],
+      category_name: snapshot ["category_name"],
+      description: snapshot ["description"],
+      email: snapshot ["email"],
+      category_uid: snapshot ["category_uid"]
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "uid": uid,
+    "email": email,
+    "image": image,
+    "surname": surname,
+    "followers": followers,
+    "following": following,
+    "category_name": category_name,
+    "category_uid": category_uid,
+    "description" : description
+
+  };
 }
-
-final List<Artist> artistList = [
-  Artist(
-    name: "Mahmut Orhan",
-    genre: "Deep House",
-    image: 'https://www.momondo.com.tr/discover/wp-content/uploads/sites/294/2018/07/Mahmut-Orhan-in-Dubai.jpg-momondo.jpg',
-    description: "Mahmut Orhan, Türk DJ ve prodüktör, Deep House, İndie dance ve Nu Disco",
-
-  ),
-  Artist(
-    name: "Mazhar Alanson",
-    genre: "",
-    image: 'https://iaysr.tmgrup.com.tr/196006/800/513/0/0/780/500?u=https://iysr.tmgrup.com.tr/2018/07/29/mazhar-alansona-sosyal-linc-1532894203950.jpg',
-    description: "Mazhar Alanson, Türk şarkıcı, gitarist, söz yazarı ve oyuncu",
-
-
-  ),
-  Artist(
-    name: "Aleyna Yalçın",
-    genre: "",
-    image: 'https://i.ytimg.com/vi/9YwLlHOy3GY/hqdefault.jpg',
-    description: "Aleyna Yalçın, Modern dans, bale ve jimnastik sanatçısı",
-
-
-  ),
-];
-
-final List<Artist> yakindakiEtkinlikler = [
-  Artist(
-    name: "İlhan Erşahin",
-    genre: "",
-    image: 'https://i.ytimg.com/vi/0_athQkgRH4/maxresdefault.jpg',
-    description: "İlhan Erşahin, Jazz Sanatçısı",
-
-  ),
-  Artist(
-    name: "Hakan Aysev",
-    genre: "",
-    image: 'https://source.unsplash.com/600x800/?live',
-    description: "Hakan Aysev, Ses sanatçısı, tenör",
-
-
-  )
-];
