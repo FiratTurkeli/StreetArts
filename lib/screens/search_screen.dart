@@ -6,6 +6,7 @@ import 'package:istanbulsokaksanatlari/constant/utils/datetime_utils.dart';
 import 'package:istanbulsokaksanatlari/widget/appBars/header1.dart';
 
 import '../constant/text_style.dart';
+import '../widget/background.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -45,13 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Flexible(
             child: Container(
               height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("images1/duvar3.webp"),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-                  )
-              ),
+              decoration: background(),
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: SingleChildScrollView(

@@ -8,6 +8,7 @@ import 'package:istanbulsokaksanatlari/widget/textfields/textfield.dart';
 
 import '../constant/textstyle.dart';
 import '../services/auth_methods.dart';
+import '../widget/background.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -95,14 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: Colors.black,
 
       body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images1/duvar3.webp"),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken)
-            )
-        ),
-
+        decoration: background(),
         child: Padding(
           padding: const EdgeInsets.all(22.0),
           child: Center(

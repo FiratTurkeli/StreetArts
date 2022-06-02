@@ -8,6 +8,7 @@ import 'package:istanbulsokaksanatlari/constant/utils/app_utils.dart';
 import 'package:istanbulsokaksanatlari/models/fake_event_model.dart';
 import 'package:istanbulsokaksanatlari/constant/ui_helper.dart';
 import 'package:istanbulsokaksanatlari/widget/appBars/header1.dart';
+import 'package:istanbulsokaksanatlari/widget/background.dart';
 import 'package:istanbulsokaksanatlari/widget/cards/past_events_card.dart';
 
 import '../widget/cards/upcoming_events_card.dart';
@@ -71,13 +72,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
       drawer: const DrawerScreen(),
       backgroundColor: Colors.white,
       body: Container(
-        decoration:  const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images1/duvar3.webp"),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-            )
-        ),
+        decoration:  background(),
         child: Stack(
           children: <Widget> [
             SingleChildScrollView(

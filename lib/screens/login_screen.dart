@@ -5,6 +5,7 @@ import 'package:istanbulsokaksanatlari/constant/utils/image_picker_util.dart';
 import 'package:istanbulsokaksanatlari/services/auth_methods.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfield.dart';
 import '../constant/textstyle.dart';
+import '../widget/background.dart';
 import 'bottom_navigation_screen.dart';
 import 'register_screen.dart';
 
@@ -65,14 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.black,
 
       body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images1/duvar3.webp"),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken)
-            )
-        ),
-
+        decoration: background(),
         child: Padding(
           padding: const EdgeInsets.all(22.0),
           child: Center(

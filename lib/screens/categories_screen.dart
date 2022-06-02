@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:istanbulsokaksanatlari/screens/drawer/drawer_screen.dart';
 import 'package:istanbulsokaksanatlari/constant/textstyle.dart';
 import 'package:istanbulsokaksanatlari/widget/appBars/header1.dart';
+import 'package:istanbulsokaksanatlari/widget/background.dart';
 
 import 'drawer/artist_list_screen.dart';
 
@@ -31,14 +32,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           return Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images1/duvar3.webp"),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-                )
-            ),
-
+            decoration: background(),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
