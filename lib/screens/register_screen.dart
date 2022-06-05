@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:istanbulsokaksanatlari/constant/utils/image_picker_util.dart';
+import 'package:istanbulsokaksanatlari/widget/app_logo.dart';
+import 'package:istanbulsokaksanatlari/widget/app_name.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfieldbirthday.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -107,10 +109,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-
-                    Text("S A", style: GoogleFonts.permanentMarker(textStyle: ibbText)),
-                    SizedBox(width: 160, child: Image.asset("images1/StreetArts2.png")), //200
-
+                    appName(),
+                    appLogo(),//200
                     TextFieldInput(
                         textEditingController: _nameController,
                         hintText: "Name",

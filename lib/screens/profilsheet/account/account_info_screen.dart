@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:istanbulsokaksanatlari/constant/text_style.dart';
 import 'package:istanbulsokaksanatlari/constant/ui_helper.dart';
 import 'package:istanbulsokaksanatlari/screens/profilsheet/account/edit_profile_screen.dart';
 import 'package:istanbulsokaksanatlari/widget/appBars/app_bar_back_yellow.dart';
 
+import '../../../constant/color.dart';
 import '../../../constant/utils/image_picker_util.dart';
 
 class AccountInfoScreen extends StatefulWidget {
@@ -61,15 +63,15 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
       body: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-
         children: [
           profilepic(),
           list(),
-
         ],
       ),
     );
   }
+
+
 
  Widget profilePic(){
      if (userData["image"] == null) {
@@ -89,7 +91,6 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
 
 
   Widget profilepic(){
-
     return  Padding(
       padding: const EdgeInsets.only(right: 10, left: 10, top: 20.0 ),
       child: Container(
@@ -141,59 +142,38 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
             primary: false,
             shrinkWrap: true,
             children: [
-              ListTile(
-                leading: const Icon(Icons.person, color: Colors.lime,),
-                title:  Text("${userData['name']} ${userData['surname']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-                onTap:(){
 
-                },
+              listTile(
+                  Icons.person,
+                  "${userData['name']} ${userData['surname']}"
               ),
 
-
-              ListTile(
-                leading: const Icon(Icons.email, color: Colors.lime,),
-                title: Text("${userData['email']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-
-                onTap:(){
-
-                },
+              listTile(
+                  Icons.email,
+                  "${userData['email']}"
               ),
 
-
-
-
-              ListTile(
-                leading: const Icon(Icons.calendar_today_sharp , color: Colors.lime,),
-                title:  Text("Birthday: ${userData['birthday']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-
-
-                onTap:(){
-
-                },
+              listTile(
+                  Icons.calendar_today_sharp,
+                  "Birthday: ${userData['birthday']}"
               ),
 
-              ListTile(
-                leading: const Icon(Icons.security , color: Colors.lime,),
-                title: const Text("Personal ID", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-                onTap:(){
-
-                },
-              ),
-
-
-
-
-
+              listTile(
+                  Icons.security,
+                  "Personal ID"
+              )
             ],
           ),
         ),
-
-
-
       ],
     );
   }
 
-
-
+  ListTile listTile (IconData icon, String text){
+    return  ListTile(
+      leading: Icon(icon , color: lime,),
+      title: Text(text, style: accountInfoStyle,),
+      onTap:(){},
+    );
+  }
 }

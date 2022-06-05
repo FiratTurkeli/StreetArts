@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:istanbulsokaksanatlari/constant/ui_helper.dart';
+import '../constant/color.dart';
 import '../constant/utils/datetime_utils.dart';
 
 class LocationSheetScreen extends StatefulWidget {
@@ -20,13 +21,17 @@ class _LocationSheetScreenState extends State<LocationSheetScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0, left: 15, bottom: 5),
-            child: Text("Events" , style: TextStyle(fontSize:20 , fontWeight: FontWeight.bold),),
-          ),
+          buildInfo(),
           buildSheet(),
         ],
       ),
+    );
+  }
+
+  Widget buildInfo(){
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0, left: 15, bottom: 5),
+      child: Text("Events" , style: TextStyle(fontSize:20 , fontWeight: FontWeight.bold),),
     );
   }
 
@@ -54,7 +59,7 @@ class _LocationSheetScreenState extends State<LocationSheetScreen> {
                     DocumentSnapshot eventList = snapshot.data.docs[index];
                     return Column(
                       children: [
-                        list(eventList["date"].toDate(),
+                        buildList(eventList["date"].toDate(),
                             "${eventList["artist_name"]} ${eventList["artist_surname"]}",
                             eventList["artist_image"],
                             "${eventList["category_name"]}" ,
@@ -71,86 +76,98 @@ class _LocationSheetScreenState extends State<LocationSheetScreen> {
 
     );
   }
-  Widget list(var date, String name, String image, String category_name, String location_name ){
+
+
+  Widget buildList(var date, String name, String image, String category_name, String location_name ){
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(right: 10.0, left: 10.0 , bottom: 5, top: 5),
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.lightGreen[700],
-              borderRadius: BorderRadius.circular(25)
+      child: Container(
+        margin: EdgeInsets.only(right: 15.0, left: 15.0 , bottom: 10, top: 10),
+        decoration: BoxDecoration(
+            color: Colors.lightGreen[700],
+            borderRadius: BorderRadius.circular(25)
+        ),
+        height: 80,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            buildDateAndLocName(date, location_name),
+            buildCategoryNameAndName(category_name, name),
+            buildImage(image),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildDateAndLocName(String date, String location_name){
+    return  Padding(
+      padding: const EdgeInsets.only(top:3.0, bottom: 3, left: 3),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          buildDateContainer(date),
+          UIHelper.verticalSpace(8),
+          buildLocationName(location_name),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDateContainer(var date){
+    return Container(
+      decoration: BoxDecoration(
+          color: white,
+          borderRadius: BorderRadius.circular(50)
+      ),
+      height: 30,
+      width: 130,
+      child: Center(child: Text(DateTimeUtils.getFullDate(date), style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.bold),)),
+    );
+  }
+
+  Widget buildLocationName(String location_name){
+    return  Row(
+      children: [
+        Icon(Icons.location_on_sharp, color: Colors.limeAccent,),
+        Text(location_name, style: TextStyle(color: Colors.white , fontSize: 15,),),
+      ],
+    );
+  }
+
+  Widget buildCategoryNameAndName(String category_name, String name){
+    return SizedBox(
+      height: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+              margin: EdgeInsets.only(top:3.0, bottom: 3),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+              ) ,
+              height: 30,
+              width: 80,
+              child: Center(child: Text(category_name, style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.bold),))
           ),
-          height: 80,
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+          UIHelper.verticalSpace(8),
+          Text(name, style: TextStyle(color: Colors.white, fontSize: 16 , fontWeight: FontWeight.bold),)
+        ],
+      ),
+    );
+  }
 
-                Padding(
-                  padding: const EdgeInsets.only(top:3.0, bottom: 3, left: 3),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(50)
-                        ),
-                        height: 30,
-                        width: 130,
-                        child: Center(child: Text(DateTimeUtils.getFullDate(date), style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.bold),)),
-                      ),
-                      UIHelper.verticalSpace(8),
-                      Row(
-                        children: [
-                          Icon(Icons.location_on_sharp, color: Colors.limeAccent,),
-                          Text(location_name, style: TextStyle(color: Colors.white , fontSize: 15,),),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top:3.0, bottom: 3),
-                  child: SizedBox(
-                    height: 100,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                            ) ,
-                            height: 30,
-                            width: 80,
-                            child: Center(child: Text(category_name, style: TextStyle(color: Colors.black87, fontSize: 15, fontWeight: FontWeight.bold),))),
-                        UIHelper.verticalSpace(8),
-                        Text(name, style: TextStyle(color: Colors.white, fontSize: 16 , fontWeight: FontWeight.bold),)
-                      ],
-                    ),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(
-                      image,
-                    ),
-                  ),
-                ),
-
-
-              ],
-            ),
-          ),
+  Widget buildImage(String image){
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: CircleAvatar(
+        radius: 30,
+        backgroundImage: NetworkImage(
+          image,
         ),
       ),
     );

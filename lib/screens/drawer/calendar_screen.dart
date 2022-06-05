@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:istanbulsokaksanatlari/constant/text_style.dart';
 import 'package:istanbulsokaksanatlari/widget/appBars/app_bar_back.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import '../../constant/color.dart';
+import '../../widget/background.dart';
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -10,12 +13,7 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String title = "Etkinlik Takvimi";
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("images1/duvar3.webp"),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-        ),),
+      decoration: background(),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: appBarBack(),
@@ -29,22 +27,22 @@ class CalendarScreen extends StatelessWidget {
                 child: Builder(
                   builder: (context) {
                     return SfCalendar(
-                      todayTextStyle: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),
-                      appointmentTextStyle: const TextStyle(fontWeight: FontWeight.bold),
-                      blackoutDatesTextStyle:const TextStyle(fontWeight: FontWeight.bold),
+                      todayTextStyle: todayCalendarTextStyle,
+                      appointmentTextStyle: appointmentCalendarTextStyle,
+                      blackoutDatesTextStyle: blackoutDatesTextStyle,
                       view: CalendarView.month,
-                      cellBorderColor: Colors.black,
+                      cellBorderColor: black,
                       headerStyle: CalendarHeaderStyle(
-                        backgroundColor: Colors.limeAccent.withOpacity(0.5),
+                        backgroundColor: backgroundColorCalendar,
                         textAlign: TextAlign.center,
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+                        textStyle: monthStyle,
                       ),
                       viewHeaderStyle: ViewHeaderStyle(
-                        backgroundColor: Colors.white.withOpacity(0.7),
-                        dayTextStyle: TextStyle(fontSize: 14, color: Colors.black, ),
-                        dateTextStyle: TextStyle(fontSize: 14, color: Colors.black, ),
+                        backgroundColor: calendarHeaderBackgroundColor,
+                        dayTextStyle: subtitleStyle,
+                        dateTextStyle: subtitleStyle,
                       ),
-                      todayHighlightColor: Colors.black,
+                      todayHighlightColor: black,
                       backgroundColor: Colors.white.withOpacity(0.5),
                       firstDayOfWeek: 1,
                       selectionDecoration: const BoxDecoration(
@@ -55,8 +53,7 @@ class CalendarScreen extends StatelessWidget {
                       ),
                       onTap: (CalendarTapDetails details){
                         showModalBottomSheet(
-                          backgroundColor: Colors.white,
-
+                          backgroundColor: white,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(16),
@@ -65,7 +62,7 @@ class CalendarScreen extends StatelessWidget {
                             context: context,
                             isScrollControlled: true,
                             builder: (context){
-                              return gunDetaySheet();
+                              return dayDetailsSheet();
                             }
 
                         );
@@ -83,14 +80,14 @@ class CalendarScreen extends StatelessWidget {
     );
   }
 
-  Widget gunDetaySheet(){
+  Widget dayDetailsSheet(){
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: SizedBox(
         height: 500,
         child: SfCalendar(
           view: CalendarView.day,
-          backgroundColor: Colors.white,
+          backgroundColor: white,
           todayHighlightColor: Colors.blueGrey,
           cellBorderColor: Colors.grey,
         ),

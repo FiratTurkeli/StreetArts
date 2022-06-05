@@ -47,16 +47,14 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height,
               decoration: background(),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const header1(),
-                      buildSearch(),
-                      isShowUsers? body() :   Text("")
-                    ],
-                  ),
+              margin: EdgeInsets.only(top: 8),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const header1(),
+                    buildSearch(),
+                    isShowUsers? body() :   Text("")
+                  ],
                 ),
               ),
             ),
@@ -107,45 +105,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemBuilder: (context,index){
                   var date =(snapshot.data! as dynamic).docs[index]["date"].toDate();
                   return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage((snapshot.data! as dynamic).docs[index]["artist_image"]),
+                    leading: circleAvatar((snapshot.data! as dynamic).docs[index]["artist_image"]),
+                    title: buildTitleWidget((snapshot.data! as dynamic).docs[index]["artist_name"], (snapshot.data! as dynamic).docs[index]["artist_surname"],<(snapshot.data! as dynamic).docs[index]["location_name"]
                     ),
-                    title: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Text((snapshot.data! as dynamic).docs[index]["artist_name"] , style: const TextStyle(color: Colors.white , fontWeight: FontWeight.bold, fontSize: 18),),
-                            const Text(" "),
-                            Text((snapshot.data! as dynamic).docs[index]["artist_surname"] , style: const TextStyle(color: Colors.white , fontWeight: FontWeight.bold, fontSize: 18),),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Icon(Icons.location_on_sharp, color: Colors.amber, size: 12,),
-                            Text((snapshot.data! as dynamic).docs[index]["location_name"] , style: const TextStyle(color: Colors.white , fontSize: 14),),
-                          ],
-                        )
-                      ],
-                    ),
-
-                    trailing:  Container(
-                      decoration: BoxDecoration(
-                        color: primaryLight,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8.0),
-                      child: SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: Column(
-                            children: [
-                              Text(DateTimeUtils.getMonth(date), style: monthStyle,),
-                              Text(DateTimeUtils.getDayOfMonth(date), style: titleStyle,)
-                            ],
-                          )),
-                    ),
-
+                    trailing: buildTrailingWidget(date)
                   );
                 }
             ),
@@ -154,6 +117,55 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+ Widget circleAvatar(String image){
+    return CircleAvatar(
+      backgroundImage: NetworkImage(image),
+    );
+    //(snapshot.data! as dynamic).docs[index]["artist_image"]
+ }
+
+ Widget buildTitleWidget(String artist_name, String artist_surname, String location_name){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Text(artist_name , style: const TextStyle(color: Colors.white , fontWeight: FontWeight.bold, fontSize: 18),),
+            const Text(" "),
+            Text(artist_surname, style: const TextStyle(color: Colors.white , fontWeight: FontWeight.bold, fontSize: 18),),
+          ],
+        ),
+        Row(
+          children: [
+            const Icon(Icons.location_on_sharp, color: Colors.amber, size: 12,),
+            Text(location_name , style: const TextStyle(color: Colors.white , fontSize: 14),),
+          ],
+        )
+      ],
+    );
+ }
+
+ Widget buildTrailingWidget(var date){
+    return  Container(
+      decoration: BoxDecoration(
+        color: primaryLight,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8.0),
+      child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Column(
+            children: [
+              Text(DateTimeUtils.getMonth(date), style: monthStyle,),
+              Text(DateTimeUtils.getDayOfMonth(date), style: titleStyle,)
+            ],
+          )),
+    );
+ }
+//(snapshot.data! as dynamic).docs[index]["artist_name"]
+//(snapshot.data! as dynamic).docs[index]["artist_surname"]
+//(snapshot.data! as dynamic).docs[index]["location_name"]
 
 
 }

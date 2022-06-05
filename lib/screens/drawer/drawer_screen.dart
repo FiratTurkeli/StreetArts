@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:istanbulsokaksanatlari/constant/color.dart';
 import 'package:istanbulsokaksanatlari/screens/drawer/calendar_screen.dart';
 import 'artist_list_screen.dart';
 
@@ -15,99 +16,116 @@ class DrawerScreen extends StatelessWidget {
         borderRadius: BorderRadius.only(topLeft: Radius.circular(10))
       ),
       child: Container(
-        color: Colors.white,
+        color: white,
         child: ListView(
           children: [
-            SizedBox(height: 150,
-              child: DrawerHeader(
-                  child: Image.asset("images1/StreetArts2.png", height: 60, width: 60),
-                decoration: const BoxDecoration(
-                  color: Colors.lime
-
-                ),
-
-              ),
+            SizedBox(
+              height: 150,
+              child: drawerHeader(),
             ),
             ListView(
-
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: [
-                 const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Artists"),
-                  trailing: Icon(Icons.keyboard_arrow_down),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [
-
-                      ListTile(
-                        leading: const Icon(Icons.music_note , color: Colors.deepPurple,),
-                        title: const Text("Music"),
-                        onTap:(){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Müzik",)));
-                        },
-                      ),
-
-                      ListTile(
-                        leading: const Icon(Icons.format_paint_outlined, color: Colors.purple,),
-                        title: const Text("Graffiti"),
-                        onTap:(){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Graffiti",)));
-                          },
-                      ),
-
-                      ListTile(
-                        leading: const Icon(Icons.people_sharp, color: Colors.deepOrangeAccent,),
-                        title: const Text("Dance"),
-                        onTap:(){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Dans",)));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-
-                ListTile(
-                  leading: const Icon(Icons.event, color: Colors.green,),
-                  title: const Text("Event Calendar"),
-                  onTap:(){
+                listTileHeader(Icons.person, "Artists", Icons.keyboard_arrow_down),
+                artistByCategories(context),
+                listTile(
+                    Icons.event,
+                    Colors.green,
+                    "Event Calendar",
+                      (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const CalendarScreen()));
-                    },
+                  },
                 ),
-
-                ListTile(
-                  leading: const Icon(Icons.favorite, color: Colors.red,),
-                  title: const Text("Favorite Artists"),
-                  onTap:(){},
+                listTile(
+                    Icons.favorite,
+                    black,
+                    "Favorite Artists",
+                        () { }
                 ),
-
-                ListTile(
-                  leading: const Icon(Icons.perm_phone_msg_sharp, color: Colors.black,),
-                  title: const Text("Contact Us"),
-                  onTap:(){},
+                listTile(
+                    Icons.perm_phone_msg_sharp,
+                    black,
+                    "Contact Us",
+                        () { }
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top:8.0, right: 45.0,left: 45  ),
-                  child: ElevatedButton(
-
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green[700],
-                    onPrimary: Colors.white,
-                  ),
-                      onPressed: (){},
-                      child: Text("Switch to Artist Profile")),
-                )
+                switchToArtistButton(),
               ],
             )
           ]
         ),
+      ),
+    );
+  }
+
+  ListTile listTile(IconData  icon, Color color, String text, VoidCallback onTap){
+    return  ListTile(
+      leading: Icon(icon, color: color,),
+      title: Text(text),
+      onTap: onTap,
+    );
+  }
+
+  ListTile listTileHeader(IconData  icon, String text, IconData trailingIcon){
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(text),
+      trailing: Icon(trailingIcon),
+    );
+  }
+
+  Padding switchToArtistButton(){
+    return Padding(
+      padding: const EdgeInsets.only(top:8.0, right: 45.0,left: 45  ),
+      child: ElevatedButton(
+
+          style: ElevatedButton.styleFrom(
+            primary: Colors.green[700],
+            onPrimary: Colors.white,
+          ),
+          onPressed: (){},
+          child: Text("Switch to Artist Profile")),
+    );
+  }
+
+  DrawerHeader drawerHeader(){
+    return  DrawerHeader(
+      child: Image.asset("images1/StreetArts2.png", height: 60, width: 60),
+      decoration: const BoxDecoration(
+          color: Colors.lime
+      ),
+    );
+  }
+
+  Padding artistByCategories(BuildContext context){
+    return    Padding(
+      padding: const EdgeInsets.only(left: 18.0),
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        children: [
+          listTile(
+            Icons.music_note,
+            Colors.deepPurple,
+            "Music",
+                (){Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Müzik",)));},
+          ),
+
+          listTile(
+            Icons.format_paint_outlined,
+            Colors.purple,
+            "Graffiti",
+                (){Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Graffiti",)));},
+          ),
+
+
+          listTile(
+            Icons.people_sharp,
+            Colors.deepOrangeAccent,
+            "Dance",
+                (){Navigator.push(context, MaterialPageRoute(builder: (context) =>  ArtistListScreen(category_name: "Dans",)));},
+          ),
+        ],
       ),
     );
   }

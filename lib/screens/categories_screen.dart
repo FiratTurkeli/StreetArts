@@ -41,10 +41,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const header1(),
-                    Container(
-                        width: 300,
-                        child: buildCategoriesCard()
-                    )
+                    buildCategoriesCard(),
                   ],
                 ),
               ),
@@ -60,61 +57,64 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
 
   Widget buildCategoriesCard(){
-    return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("categories").snapshots(),
-           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-           if (!snapshot.hasData) {
-             return const CircularProgressIndicator();
-           } else {
-             return ListView.builder(
-                 primary: false,
-                 scrollDirection: Axis.vertical,
-                 shrinkWrap: true,
-                 itemCount: snapshot.data.docs.length,
-                 itemBuilder: (context, index) {
-                   DocumentSnapshot categoryList = snapshot.data.docs[index];
+    return Container(
+      width: 300,
+      child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("categories").snapshots(),
+             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+             if (!snapshot.hasData) {
+               return const CircularProgressIndicator();
+             } else {
+               return ListView.builder(
+                   primary: false,
+                   scrollDirection: Axis.vertical,
+                   shrinkWrap: true,
+                   itemCount: snapshot.data.docs.length,
+                   itemBuilder: (context, index) {
+                     DocumentSnapshot categoryList = snapshot.data.docs[index];
 
-                   return SizedBox(
-                     width: 300,
-                     height: 150,
-                     child: Padding(
-                       padding: const EdgeInsets.only(top: 4.0),
-                       child: Card(
-                         clipBehavior: Clip.antiAlias,
-                         shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(15)
-                         ),
-                         child: Stack(
-                           alignment: Alignment.center,
-                           children: [
-                             Text(categoryList["category_name"], style: GoogleFonts.josefinSans(
-                                 textStyle: ibbText),),
-                             Ink.image(image: NetworkImage(categoryList["category_image"]),
-                               colorFilter: ColorFilter.mode(
-                                   Colors.grey.withOpacity(0.7),
-                                   BlendMode.modulate),
-                               child: InkWell(
-                                 onTap: () {
-                                   Navigator.push(context, MaterialPageRoute(
-                                       builder: (
-                                           context) => ArtistListScreen(category_name: categoryList["category_name"],)));
-                                 },
+                     return SizedBox(
+                       width: 300,
+                       height: 150,
+                       child: Padding(
+                         padding: const EdgeInsets.only(top: 4.0),
+                         child: Card(
+                           clipBehavior: Clip.antiAlias,
+                           shape: RoundedRectangleBorder(
+                               borderRadius: BorderRadius.circular(15)
+                           ),
+                           child: Stack(
+                             alignment: Alignment.center,
+                             children: [
+                               Text(categoryList["category_name"], style: GoogleFonts.josefinSans(
+                                   textStyle: ibbText),),
+                               Ink.image(image: NetworkImage(categoryList["category_image"]),
+                                 colorFilter: ColorFilter.mode(
+                                     Colors.grey.withOpacity(0.7),
+                                     BlendMode.modulate),
+                                 child: InkWell(
+                                   onTap: () {
+                                     Navigator.push(context, MaterialPageRoute(
+                                         builder: (
+                                             context) => ArtistListScreen(category_name: categoryList["category_name"],)));
+                                   },
+                                 ),
+                                 fit: BoxFit.cover,
                                ),
-                               fit: BoxFit.cover,
-                             ),
 
-                           ],
+                             ],
+                           ),
                          ),
                        ),
-                     ),
 
-                   );
+                     );
 
-                 }
-             );
+                   }
+               );
+             }
            }
-         }
 
+      ),
     );
   }
 }

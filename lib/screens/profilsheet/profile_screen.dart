@@ -59,45 +59,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
 
-                      leading: const Icon(Icons.person ,),
-                      title: const Text("Your Account", style: TextStyle(fontWeight: FontWeight.bold , ),),
-                      subtitle: const Text("Your identity information, phone number , e-posta addres etc",),
-                      trailing: const Icon(Icons.arrow_right,),
-                      onTap:(){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => AccountInfoScreen(uid: FirebaseAuth.instance.currentUser!.uid)));
+                  listTile(
+                      Icons.person,
+                      "Your Account",
+                      "Your identity information, phone number , e-posta addres etc",
+                          () {  Navigator.push(context, MaterialPageRoute(builder: (context) => AccountInfoScreen(uid: FirebaseAuth.instance.currentUser!.uid)));}),
 
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      leading: const Icon(Icons.vpn_key_outlined),
-                      title: const Text("Reset Your Password", style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: const Text("Change your password whenever you want", ),
-                      trailing: const Icon(Icons.arrow_right),
-                      onTap:(){
-
-                      },
-                    ),
+                  listTile(
+                    Icons.vpn_key_outlined,
+                    "Reset Your Password",
+                    "Change your password whenever you want",
+                        (){},
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      leading: const Icon(Icons.arrow_back),
-                      title: const Text("Go to Homepage", style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: const Text("Make sure you're done", ),
-                      onTap:(){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavigationScreen()));
-                      },
-                    ),
-                  ),
 
+                  listTile(
+                    Icons.arrow_back,
+                    "Go to Homepage",
+                    "Make sure you're done",
+                        (){Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavigationScreen()));},
+                  ),
                 ],
               )
 
@@ -105,6 +87,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
 
 
+    );
+  }
+
+  Padding listTile(IconData icon, String title,String subtitle, VoidCallback onTap){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
+        subtitle: Text(subtitle),
+        onTap: onTap,
+      ),
     );
   }
 }

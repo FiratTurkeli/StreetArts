@@ -5,6 +5,8 @@ import 'package:istanbulsokaksanatlari/constant/utils/image_picker_util.dart';
 import 'package:istanbulsokaksanatlari/services/auth_methods.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfield.dart';
 import '../constant/textstyle.dart';
+import '../widget/app_logo.dart';
+import '../widget/app_name.dart';
 import '../widget/background.dart';
 import 'bottom_navigation_screen.dart';
 import 'register_screen.dart';
@@ -67,41 +69,33 @@ class _LoginScreenState extends State<LoginScreen> {
 
       body: Container(
         decoration: background(),
-        child: Padding(
-          padding: const EdgeInsets.all(22.0),
-          child: Center(
-            child: SingleChildScrollView(
-              reverse: true,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-
-                    Text("S A", style: GoogleFonts.permanentMarker(textStyle: ibbText)),
-
-                    SizedBox(width: 200, child: Image.asset("images1/StreetArts2.png")),
-
+        margin: EdgeInsets.all(22),
+        child: Center(
+          child: SingleChildScrollView(
+            reverse: true,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  appName(),
+                  appLogo(),
                   TextFieldInput(
-                      textEditingController: _emailController,
-                      hintText: "Email adress",
-                      textInputType: TextInputType.emailAddress,
-                      icon: Icon(Icons.mail_outlined, color: Colors.white, size:24),
-                  ),
-
-                    TextFieldInput(
-                        textEditingController: _passwordController,
-                        hintText: "Password",
-                        textInputType: TextInputType.text,
-                      isPass: true,
-                      icon: Icon(Icons.vpn_key_outlined, color: Colors.white, size:24 ),
-                    ),
-
-                    girisButonu(),
-
-                    kayitButonu(),
-                  ],
+                    textEditingController: _emailController,
+                    hintText: "Email adress",
+                    textInputType: TextInputType.emailAddress,
+                    icon: Icon(Icons.mail_outlined, color: Colors.white, size:24),
                 ),
+                  TextFieldInput(
+                      textEditingController: _passwordController,
+                      hintText: "Password",
+                      textInputType: TextInputType.text,
+                    isPass: true,
+                    icon: Icon(Icons.vpn_key_outlined, color: Colors.white, size:24 ),
+                  ),
+                  girisButonu(),
+                  kayitButonu(),
+                ],
               ),
             ),
           ),
@@ -110,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     );
   }
+
 
   Widget girisButonu(){
     return Padding(

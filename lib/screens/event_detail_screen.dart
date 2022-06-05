@@ -117,38 +117,44 @@ class _EventDetailScreenState extends State<EventDetailScreen> with TickerProvid
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       buildHeaderImage("${eventList["artist_image"]}", "${eventList["artist_name"]} ${eventList["artist_surname"]}"),
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            buildEventTitle("${eventList["artist_name"]} ${eventList["artist_surname"]}"),
-
-                            buildEventDate(eventList["date"].toDate()),
-
-                            buildAboutEvent("${eventList["artist_description"]}"),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(Radius.circular(18)),
-                                child: SizedBox(
-                                    height: 150,
-                                    width: 380,
-                                    child: GoogleMap(initialCameraPosition: baslangicKonum,)),
-                              ),
-                            )
-
-                            //...List.generate(10, (index) => ListTile(title: Text("Dummy content"))).toList(),
-                          ],
-                        ),
-                      ),
+                      buildEventDetails("${eventList["artist_name"]}",  "${eventList["artist_surname"]}", eventList["date"].toDate(), "${eventList["artist_description"]}"),
                     ],
                   );
                 }
             );
           }
         }
+    );
+  }
+
+  Widget buildEventDetails(String artistName, String artistSurname, String date, String descrption){
+    return  Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          buildEventTitle("${artistName} ${artistSurname}"),
+
+          buildEventDate(date),
+
+          buildAboutEvent(descrption),
+
+          googleMap(),
+        ],
+      ),
+    );
+  }
+
+  Widget googleMap(){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(18)),
+        child: SizedBox(
+            height: 150,
+            width: 380,
+            child: GoogleMap(initialCameraPosition: baslangicKonum,)),
+      ),
     );
   }
 
