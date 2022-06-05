@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:istanbulsokaksanatlari/models/fake_event_model.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/color.dart';
@@ -127,7 +126,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> with TickerProvid
     );
   }
 
-  Widget buildEventDetails(String artistName, String artistSurname, String date, String descrption){
+  Widget buildEventDetails(String artistName, String artistSurname, DateTime date, String descrption){
     return  Container(
       padding: const EdgeInsets.all(16),
       child: Column(

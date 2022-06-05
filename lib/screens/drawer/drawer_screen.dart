@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:istanbulsokaksanatlari/constant/color.dart';
 import 'package:istanbulsokaksanatlari/screens/drawer/calendar_screen.dart';
 import 'artist_list_screen.dart';

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:istanbulsokaksanatlari/constant/utils/image_picker_util.dart';
 import 'package:istanbulsokaksanatlari/services/auth_methods.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfield.dart';
-import '../constant/textstyle.dart';
 import '../widget/app_logo.dart';
 import '../widget/app_name.dart';
 import '../widget/background.dart';

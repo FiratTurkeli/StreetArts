@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:istanbulsokaksanatlari/constant/color.dart';
 import 'package:istanbulsokaksanatlari/screens/profilsheet/profile_screen.dart';
-import 'package:istanbulsokaksanatlari/screens/show_event_screen.dart';
-import 'package:istanbulsokaksanatlari/models/user_model.dart' as model;
-
 import '../../constant/utils/image_picker_util.dart';
 import '../login_screen.dart';
 
@@ -154,9 +151,7 @@ class _ProfileSheetScreenState extends State<ProfileSheetScreen> {
         listTile(
           Icons.account_balance_wallet_outlined,
           "Wallet",
-              (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ShowEventScreen()));
-          },
+              (){},
         ),
 
         listTile(

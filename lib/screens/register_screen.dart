@@ -5,10 +5,7 @@ import 'package:istanbulsokaksanatlari/widget/app_logo.dart';
 import 'package:istanbulsokaksanatlari/widget/app_name.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfieldbirthday.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:istanbulsokaksanatlari/widget/textfields/textfield.dart';
-
-import '../constant/textstyle.dart';
 import '../services/auth_methods.dart';
 import '../widget/background.dart';
 import 'login_screen.dart';
@@ -30,7 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordAgainController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   Uint8List? _image;
   bool _isLoading = false;
 

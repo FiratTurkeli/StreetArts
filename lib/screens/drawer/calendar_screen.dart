@@ -11,7 +11,6 @@ class CalendarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = "Etkinlik Takvimi";
     return Container(
       decoration: background(),
       child: Scaffold(

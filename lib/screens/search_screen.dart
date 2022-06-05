@@ -106,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   var date =(snapshot.data! as dynamic).docs[index]["date"].toDate();
                   return ListTile(
                     leading: circleAvatar((snapshot.data! as dynamic).docs[index]["artist_image"]),
-                    title: buildTitleWidget((snapshot.data! as dynamic).docs[index]["artist_name"], (snapshot.data! as dynamic).docs[index]["artist_surname"],<(snapshot.data! as dynamic).docs[index]["location_name"]
+                    title: buildTitleWidget((snapshot.data! as dynamic).docs[index]["artist_name"], (snapshot.data! as dynamic).docs[index]["artist_surname"],(snapshot.data! as dynamic).docs[index]["location_name"]
                     ),
                     trailing: buildTrailingWidget(date)
                   );

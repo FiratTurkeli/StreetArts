@@ -101,7 +101,7 @@ class _LocationSheetScreenState extends State<LocationSheetScreen> {
     );
   }
 
-  Widget buildDateAndLocName(String date, String location_name){
+  Widget buildDateAndLocName(DateTime date, String location_name){
     return  Padding(
       padding: const EdgeInsets.only(top:3.0, bottom: 3, left: 3),
       child: Column(
